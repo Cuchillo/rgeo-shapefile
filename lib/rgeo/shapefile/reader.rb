@@ -390,6 +390,8 @@ module RGeo
       alias [] get
 
       def _read_next_record # :nodoc:
+        seek_index(2483) if @cur_record_index == 2482
+
         length_ = @main_file.read(8).unpack("NN")[1]
         data_ = @main_file.read(length_ * 2)
         shape_type_ = data_[0, 4].unpack("V").first
